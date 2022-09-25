@@ -1,0 +1,46 @@
+<app-header path="/" title="{{'choose-game-mode.title' | translate}}"></app-header>
+
+<form [formGroup]="chooseGameModeForm" *ngIf="chooseGameModeForm">
+  
+  <div class="row mt-5">
+    <div class="col-3"></div>
+    <div class="col-6">
+      <mat-form-field class="col-12">
+        <mat-label>{{'choose-game-mode.playerName' | translate}}</mat-label>
+        <input required matInput formControlName="firstPlayerName" type="text">
+        <mat-error class="error-text" *ngIf="chooseGameModeForm?.get('playerName')?.invalid">
+          <strong>{{'choose-game-mode.playerName-mandatory' | translate}}</strong>
+        </mat-error>
+      </mat-form-field>  
+    </div>
+    <div class="col-3"></div>
+  </div>  
+
+  <div class="row mt-5">
+    <div class="col-3"></div>
+    <div class="col-6">
+      <mat-form-field class="col-12">
+        <mat-label>{{'choose-game-mode.gameMode' | translate}}</mat-label>
+        <mat-select required formControlName="gameMode" [(value)]="gameMode">
+          <mat-select-trigger>
+            <mat-icon class="icon-display">{{gameMode.icon}}</mat-icon>&nbsp;&nbsp;&nbsp;{{ gameMode.text | translate }}
+          </mat-select-trigger>
+
+          <mat-option *ngFor="let gameMode of gameModes" [value]="gameMode">
+              <mat-icon class="icon-display">{{gameMode.icon}}</mat-icon>
+              {{ gameMode.text | translate }}
+          </mat-option>
+        </mat-select>
+        <mat-error class="error-text" *ngIf="chooseGameModeForm?.get('gameMode')?.invalid">
+            <strong>{{'choose-game-mode.gameMode-mandatory' | translate}}</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div class="col-6"></div>
+  </div>
+
+  <div class="mt-5" style="text-align: center;">
+    <button class="mat-button" (click)="createRoom()">{{'choose-game-mode.create-room' | translate}}</button>
+  </div>
+
+</form>

@@ -1,0 +1,51 @@
+.icon-display {
+    transform: scale(1.3);
+    padding-left: 2px;
+}
+
+.round {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.score-text {
+    font-size: 25px;
+}
+
+.round-winner-text {
+    font-size: 25px;
+}
+
+.game-winner-text {
+    font-size: 25px;
+    color: fuchsia;
+    font-weight: 500;
+}
+
+.img-choice {
+    margin-left: 10px;
+}
+
+.star {
+    --br-font-size: 30px;
+    --br-gap: 10px;
+    --br-active-color: fuchsia;
+    --br-inactive-color: #d2d2d2;
+}
+ 
+section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3em;
+}
+
+.spinner {
+    position: relative;
+    margin: auto;
+    top: 30px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}

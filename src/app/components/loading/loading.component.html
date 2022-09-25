@@ -1,0 +1,12 @@
+<div mat-dialog-content>
+    <p *ngIf="data.message">{{data.message | translate}}</p>
+    <p>
+        <mat-progress-spinner
+                diameter="50"
+                mode="indeterminate"
+                color="primary"
+                strokeWidth="5"
+                value="100">
+        </mat-progress-spinner>
+    </p>
+</div>

@@ -1,0 +1,43 @@
+{
+  "error": "Ha ocurrido un error inesperado, por favor contacte con el administrador del sistema.",
+  "choose-game-mode": {
+    "title": "Elija el modo de juego:",
+    "gameMode": "Modo de juego",
+    "gameMode-mandatory": "El modo de juego es obligatorio",
+    "playerName": "Nombre del jugador:",
+    "playerName-mandatory": "El nombre del jugador es obligatorio",
+    "create-room": "Empezar partida"
+  },
+  "game-room": {
+    "title": "Game Room",
+    "gameMode": "Modo de juego",
+    "room-url": "URL de la sala:",
+    "firstPlayerName": "Nombre del jugador 1:",
+    "secondPlayerName": "Nombre del jugador 2:",
+    "accept-invitation": "Aceptar la invitación",
+    "copy-url": "Copiar la URL de la sala",
+    "waiting-opponent-join": "Esperando al oponente para unirse a la partida..."
+  },
+  "game-play": {
+    "title": "Jugar Partida",
+    "gameMode": "Modo de juego",
+    "your-score": "Tu puntuación: ",
+    "opponent-score": "Puntación del oponente: ",
+    "game": "PARTIDA",
+    "round": "RONDA",
+    "round-tie": " Ronda empatada",
+    "wins-round": " gana la última ronda",
+    "wins-game": " gana la Partida",
+    "play-new-game": "Jugar nueva partida"
+  },
+  "game-modes": {
+    "VS_MACHINE": "Jugar contra Computadora",
+    "VS_FRIEND": "Jugar contra un Amigo",
+    "VS_RANDOM_PLAYER": "Jugar contra un Jugador aleatorio"
+  },
+  "languages": {
+    "en": "Inglés",
+    "es": "Español"
+  }
+
+}

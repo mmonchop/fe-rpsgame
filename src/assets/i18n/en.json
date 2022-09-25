@@ -1,0 +1,43 @@
+{
+    "error": "An unexpected error has occurred. Please contact system administrator.",
+    "choose-game-mode": {
+      "title": "Choose Game mode:",
+      "gameMode": "Game mode:",
+      "gameMode-mandatory": "Game mode is mandatory",
+      "playerName": "Player name:",
+      "playerName-mandatory": "Player name is mandatory",
+      "create-room": "Start Game"
+    },
+    "game-room": {
+      "title": "Game Room",
+      "gameMode": "Game mode:",
+      "room-url": "Room URL:",
+      "firstPlayerName": "Player 1 name:",
+      "secondPlayerName": "Player 2 name:",
+      "accept-invitation": "Accept invitation",
+      "copy-url": "Copy room URL",
+      "waiting-opponent-join": "Waiting oponent to join game..."
+    },
+    "game-play": {
+      "title": "Game Play",
+      "gameMode": "Game mode:",
+      "your-score": "Your score: ",
+      "opponent-score": "Opponent's score: ",
+      "game": "GAME",
+      "round": "ROUND",
+      "round-tie": " Tied Round",
+      "wins-round": " wins the last Round",
+      "wins-game": " wins Game",
+      "play-new-game": "Play new game"
+    },
+    "game-modes": {
+      "VS_MACHINE": "Play vs. Computer",
+      "VS_FRIEND": "Play vs. a Friend",
+      "VS_RANDOM_PLAYER": "Play vs. a Random player"
+    },
+    "languages": {
+      "en": "English",
+      "es": "Spanish"
+    }
+
+}

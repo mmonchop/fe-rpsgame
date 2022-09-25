@@ -1,0 +1,72 @@
+<app-header path="/" title="{{'game-play.title' | translate}}"></app-header>
+
+<form [formGroup]="gamePlayForm" *ngIf="gamePlayForm">
+  
+  <div class="row mt-3">
+    <div class="col-12" style="text-align: center;">
+      <mat-form-field class="col-4">
+        <mat-label>{{'game-play.gameMode' | translate}}</mat-label>
+        <mat-select required formControlName="gameMode" [(value)]="gameMode">
+          <mat-select-trigger>
+            <mat-icon class="icon-display">{{gameMode.icon}}</mat-icon>&nbsp;&nbsp;&nbsp;{{ gameMode.text | translate }}
+          </mat-select-trigger>
+          <mat-option *ngFor="let gameMode of gameModes" [value]="gameMode">
+              <mat-icon class="icon-display">{{gameMode.icon}}</mat-icon>
+              {{ gameMode.text | translate }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+  </div>
+
+  <div class="row mt-0">
+    <div class="col-12" style="text-align: center;">
+        <mat-label class="round">{{'game-play.game' | translate}} {{ room.currentGame.gameNumber }} - {{'game-play.round' | translate}} {{ currentRound }} </mat-label>
+    </div>
+  </div>    
+
+  <div class="row mt-0">
+    <div class="col-2"></div>
+    <div class="col-3" style="text-align: center;">
+      <section>
+        <mat-label class="score-text">{{'game-play.your-score' | translate}} {{ leftSidePlayer.name }} </mat-label>
+        <bar-rating [readOnly]=true class="star" [(rate)]="leftSidePlayerScore" [max]="3"></bar-rating>
+      </section>
+    </div>
+    <div class="col-2"></div>
+    <div class="col-3" style="text-align: center;">
+      <section>
+        <mat-label class="score-text">{{'game-play.opponent-score' | translate}} {{ rightSidePlayer.name }} </mat-label>
+        <bar-rating [readOnly]=true class="star" [(rate)]="rightSidePlayerScore" [max]="3"></bar-rating>
+      </section>
+    </div>
+    <div class="col-2"></div>
+  </div>    
+
+  <div class="row mt-5">
+    <div class="col-2"></div>
+    <div class="col-3" style="text-align: center;">
+      <img class="img-choice" src="assets/images/rock.svg" height="175px" *ngIf="choices[0].visible" (click)="doPlay('ROCK')">
+      <img class="img-choice" src="assets/images/paper.svg" height="175px" *ngIf="choices[1].visible" (click)="doPlay('PAPER')">
+      <img class="img-choice" src="assets/images/scissors.svg" height="175px"  *ngIf="choices[2].visible" (click)="doPlay('SCISSORS')">
+    </div>
+    <div class="col-2" style="text-align: center;">
+      <mat-label class="round-winner-text" *ngIf="currentRoundIsOverOrTie() && !currentGameIsOver()">{{ roundWinner }}</mat-label>
+      <mat-label class="game-winner-text" *ngIf="currentGameIsOver()">{{ gameWinner }}</mat-label>
+    </div>
+    <div class="col-3" style="text-align: center;">
+      <mat-spinner class="spinner" *ngIf="opponentChoice.value === 'blank'"></mat-spinner>
+      <img class="img-choice" src="assets/images/{{ opponentChoice.value | lowercase }}.svg" height="{{ opponentChoice.height }}">
+    </div>
+    <div class="col-2"></div>
+  </div>
+  <div class="row mt-5 col-12" *ngIf="currentGameIsOver()">
+    <div class="col-4"></div>
+    <div class="col-4" style="text-align: center;">
+      <button class="mat-button" (click)="doStartNewGame()" >{{'game-play.play-new-game' | translate}}</button>
+    </div>
+    <div class="col-4"></div>
+  </div>
+
+</form>

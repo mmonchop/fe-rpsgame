@@ -1,0 +1,68 @@
+<app-header path="/" title="{{'game-room.title' | translate}}"></app-header>
+
+<form [formGroup]="acceptRoomInvitationForm" *ngIf="acceptRoomInvitationForm">
+
+  <div class="row mt-5">
+    <div class="col-3"></div>
+    <div class="col-6">
+      <mat-form-field class="col-12">
+        <mat-label>{{'game-room.room-url' | translate}}</mat-label>
+        <input matInput type="text" formControlName="roomInvitationUrl">
+      </mat-form-field> 
+    </div>
+    <div class="col-3"></div>
+  </div>  
+
+  <div class="row mt-5">
+    <div class="col-3"></div>
+    <div class="col-3">
+      <mat-form-field class="col-12">
+        <mat-label>{{'game-room.firstPlayerName' | translate}}</mat-label>
+        <input matInput formControlName="firstPlayerName" type="text">
+      </mat-form-field> 
+    </div> 
+    <div class="col-3">
+      <mat-form-field *ngIf="gameMode" class="col-12">
+        <mat-label>{{'game-room.gameMode' | translate}}</mat-label>
+        <mat-select required formControlName="gameMode" [(value)]="gameMode">
+          <mat-select-trigger>
+            <mat-icon class="icon-display">{{gameMode.icon}}</mat-icon>&nbsp;&nbsp;&nbsp;{{ gameMode.text | translate }}
+          </mat-select-trigger>
+          <mat-option *ngFor="let gameMode of gameModes" [value]="gameMode">
+            <mat-icon class="icon-display">{{gameMode.icon}}</mat-icon>
+            {{ gameMode.text | translate }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="col-3"></div>
+  </div>
+
+  <div class="row mt-5">
+    <div class="col-3"></div>
+    <div class="col-6">
+      <mat-form-field class="col-5" *ngIf="!roomSecondPlayerJoined() && isSecondPlayer">
+        <mat-label>{{'game-room.secondPlayerName' | translate}}</mat-label>
+        <input matInput formControlName="secondPlayerName" type="text">
+        <mat-error class="error-text" *ngIf="acceptRoomInvitationForm?.get('secondPlayerName')?.invalid">
+          <strong>{{'game-room.secondPlayerName-mandatory' | translate}}</strong>
+        </mat-error>
+      </mat-form-field>  
+    </div>
+    <div class="col-3"></div>
+  </div>
+
+  <div class="mt-5" style="text-align: center;">
+    <button class="mat-button" (click)="copyRoomInviationUrl()" *ngIf="!isSecondPlayer && gameMode.value == 'VS_FRIEND'">{{'game-room.copy-url' | translate}}</button>
+    <button class="mat-button" (click)="acceptRoomInvitation()" *ngIf="isSecondPlayer && gameMode.value == 'VS_FRIEND'">{{'game-room.accept-invitation' | translate}}</button>
+  </div>
+
+  <div class="mt-5 col-12" style="text-align: center;" *ngIf="showWaitingOponentSpinner()">
+    <mat-label class="waiting-text">{{'game-room.waiting-opponent-join' | translate}}</mat-label>
+    <mat-spinner class="spinner"></mat-spinner>
+  </div>
+  
+
+
+</form>
+

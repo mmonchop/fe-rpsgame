@@ -1,0 +1,29 @@
+<mat-sidenav-container fullscreen>
+
+  <mat-sidenav-content class="sidenav-content">
+    <mat-toolbar color="primary" style="height:80px;">
+      <div class="row col-12">
+        <div class="mt-0 col-10">
+          <div class="title-header">Rock Paper Scissors</div>
+          <div class="by-header">Coding Challenge - Miguel Moncho</div>
+        </div>
+        <div class="mt-3 col-2">
+          <mat-select class="select-language" #selLang (selectionChange)="translateLanguageTo()" [(ngModel)]="selectedLanguage">
+            <mat-select-trigger>
+              <img height="40" class="icon-display" src="assets/images/{{selectedLanguage}}.png">&nbsp;&nbsp;{{'languages.' + selectedLanguage | translate}}
+            </mat-select-trigger>
+              <mat-option *ngFor="let language of translate.getLangs()" [value]="language" default="en">
+                <img height="40" class="icon-display" src="assets/images/{{language}}.png">&nbsp;&nbsp;{{'languages.' + language | translate}}
+            </mat-option>
+          </mat-select>
+        </div>
+      </div>
+
+    </mat-toolbar>
+
+    <router-outlet></router-outlet>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
