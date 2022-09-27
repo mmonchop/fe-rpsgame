@@ -3,14 +3,15 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DialogService } from 'src/app/services/dialog/dialog.service';
-import { GameRoomComponent } from './game-room.component';
 import { RoomService } from 'src/app/services/room/room.service';
-import { WebSocketApiService } from 'src/app/services/websocket-api.service';
 import { AppModule } from 'src/app/app.module';
+import { GamePlayComponent } from './game-play.component';
+import { WebSocketApiService } from 'src/app/services/websocket-api.service';
+import { PlayService } from 'src/app/services/play/play.service';
 
-describe('GameRoomComponent', () => {
-  let component: GameRoomComponent;
-  let fixture: ComponentFixture<GameRoomComponent>;
+describe('GamePlayComponent', () => {
+  let component: GamePlayComponent;
+  let fixture: ComponentFixture<GamePlayComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -20,17 +21,18 @@ describe('GameRoomComponent', () => {
         ReactiveFormsModule,
         AppModule,
       ],
-      declarations: [GameRoomComponent],
+      declarations: [GamePlayComponent],
       providers: [
         { provide: DialogService, useClass: DialogService },
         { provide: RoomService, useClass: RoomService },
+        { provide: PlayService, useClass: PlayService },
         { provide: WebSocketApiService, useClass: WebSocketApiService },
       ]
     }).compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GameRoomComponent);
+    fixture = TestBed.createComponent(GamePlayComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
