@@ -28,7 +28,8 @@
     "round-tie": " Ronda empatada",
     "wins-round": " gana la última ronda",
     "wins-game": " gana la Partida",
-    "play-new-game": "Jugar nueva partida"
+    "play-new-game": "Jugar nueva partida",
+    "left-game": " ha abandonado la partida"
   },
   "game-modes": {
     "VS_MACHINE": "Jugar contra Computadora",

@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -44,6 +44,7 @@ export class GamePlayComponent implements OnInit {
     private activatedRouter: ActivatedRoute,
     private translateService: TranslateService,
     private websocketApiService: WebSocketApiService,
+    private router: Router,
   ) {
     this.initChoices()
   }
@@ -55,6 +56,13 @@ export class GamePlayComponent implements OnInit {
       var topic = `/topic/rooms/${roomId}`
       this.websocketApiService.connect(topic, roomId, (event: any) => this.onMessageReceived(event));
     })
+  }
+
+  @HostListener('window:beforeunload', ['$event'])
+  public beforeUnloadHandler($event: any) {
+    var topic = `/app/rooms/${this.room.id}/publish`
+    var notificationEvent = `{"id": "${this.room.id}", "type": "GAME_CLOSED", "data": {"playerId": "${this.leftSidePlayer.id}"}}`
+    this.websocketApiService.send(topic, notificationEvent)
   }
 
   initChoices(): void {
@@ -180,7 +188,10 @@ export class GamePlayComponent implements OnInit {
   onMessageReceived(event: any) {
     const message = JSON.parse(event.body);
     var playerId = message.data.PlayerId
-    if (playerId === this.rightSidePlayer.id) {
+    if (message.type === 'GAME_CLOSED') {
+      this.dialogService.openDialog({message: this.rightSidePlayer.name + this.translateService.instant('game-play.left-game')})
+      this.router.navigate([''])
+    } else if (playerId === this.rightSidePlayer.id) {
       this.onRoomObtained(message.data.RoomDto, message.type === 'NEW_GAME_CREATED')
     }
   }

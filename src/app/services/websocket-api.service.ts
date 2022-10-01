@@ -39,6 +39,10 @@ export class WebSocketApiService {
         }, this.errorCallBack);
     }
 
+    send(topic: string, notificationEvent: any) {
+        this.stompClient.send(topic, {}, notificationEvent)
+    }
+
     disconnect() {
         if (this.stompClient !== null) {
             this.stompClient.disconnect();

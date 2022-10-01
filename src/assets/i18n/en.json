@@ -28,7 +28,8 @@
       "round-tie": " Tied Round",
       "wins-round": " wins the last Round",
       "wins-game": " wins Game",
-      "play-new-game": "Play new game"
+      "play-new-game": "Play new game",
+      "left-game": " has left the game"
     },
     "game-modes": {
       "VS_MACHINE": "Play vs. Computer",
