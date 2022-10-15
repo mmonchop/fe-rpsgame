@@ -12,11 +12,6 @@ export class AuthInterceptor implements HttpInterceptor {
     let userPassCode = window.btoa(environment.security.apiUsername + ":" + environment.security.apiPassword)
     let authorization = `Basic ${userPassCode}`
 
-    if (environment.security.scheme === 'oauth2') {
-      //let token = this.oidcSecurityService.getAccessToken();
-      //authorization = `Bearer ${token}`
-    } 
-
     request = request.clone({
       setHeaders: {
         authorization: `${authorization}`,
