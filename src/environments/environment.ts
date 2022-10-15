@@ -2,7 +2,10 @@ export const environment = {
   production: false,
   urlApi: '',
   stompApi: '',
-  apiUsername: '',
-  apiPassword: ''
+  security: {
+    scheme: 'basic',
+    apiUsername: '',
+    apiPassword: ''  
+  }
 };
 

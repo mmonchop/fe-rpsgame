@@ -1,7 +1,6 @@
 import * as Stomp from 'stompjs';
 import * as SockJS from 'sockjs-client';
 import { Injectable } from '@angular/core';
-import { timer } from 'rxjs';
 import { DialogService } from './dialog/dialog.service';
 import { environment } from 'src/environments/environment';
 
@@ -17,6 +16,7 @@ export class WebSocketApiService {
         private dialogService: DialogService) {
         this.webSocketEndPoint = `${environment.stompApi}`;
     }
+    
     connect(topic: string, id: string, onMessageReceivedFunction: Function) {
         const loading = this.dialogService.openLoading();
         this.id = id;
@@ -26,17 +26,17 @@ export class WebSocketApiService {
         console.log('Initializing WebSocket Connection...');
         const ws = new SockJS(this.webSocketEndPoint, null);
         this.stompClient = Stomp.over(ws);
-        this.stompClient.debug = () => {
+
+        this.stompClient.debug = () => { 
         };
-
-        const source = timer(3000);
-        source.subscribe(() => {
+        this.stompClient.connect(environment.security.apiUsername, environment.security.apiPassword, () => {
+            console.log('Connected OK');
             loading.close();
-        });
-
-        this.stompClient.connect({}, () => {
             this.stompClient.subscribe(this.topic, onMessageReceivedFunction);
-        }, this.errorCallBack);
+        }, (error: any) => {
+            loading.close();
+            this.errorCallBack(error);
+        });
     }
 
     send(topic: string, notificationEvent: any) {
