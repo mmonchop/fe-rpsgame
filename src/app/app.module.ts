@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoadingComponent } from './components/loading/loading.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
@@ -22,6 +22,7 @@ import { GamePlayComponent } from './pages/game-play/game-play.component';
 import { WebSocketApiService } from './services/websocket-api.service';
 import { PlayService } from './services/play/play.service';
 import { BarRatingModule } from 'ngx-bar-rating';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,13 @@ import { BarRatingModule } from 'ngx-bar-rating';
   }),
 
   ],
-  providers: [DialogService, RoomService, PlayService, WebSocketApiService],
+  providers: [DialogService, RoomService, PlayService, WebSocketApiService, 
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+],
   exports: [],
   bootstrap: [AppComponent]
 })

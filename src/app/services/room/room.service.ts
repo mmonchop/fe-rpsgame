@@ -1,13 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { GameMode, Room } from 'src/app/interfaces/room.interface';
-
-const httpHeaders = new HttpHeaders({
-    'Content-Type':  'application/json',
-    'Authorization': 'Basic ' + btoa(`${environment.apiUsername}:${environment.apiPassword}`)
-});
 
 const gameModes: GameMode[] = [
   { value: 'VS_MACHINE', text: 'game-modes.VS_MACHINE', icon: 'computer' },
@@ -32,7 +27,6 @@ export class RoomService {
 
   getRoom(roomId: string): Observable<Room> {
     return this.http.get<Room>(`${environment.urlApi}/rooms/${roomId}`, {
-      headers: httpHeaders
     });
   }
 
@@ -42,7 +36,6 @@ export class RoomService {
     .set('firstPlayerName', firstPlayerName);
     return this.http.post<Room>(`${environment.urlApi}/rooms`, {}, {
       params: queryParams,
-      headers: httpHeaders
     });
   }
 
@@ -52,7 +45,6 @@ export class RoomService {
       .set('secondPlayerName', secondPlayerName);
     return this.http.post<Room>(`${environment.urlApi}/rooms/${roomId}/accept-invite`, {}, {
       params: queryParams,
-      headers: httpHeaders
     });
   }  
 }

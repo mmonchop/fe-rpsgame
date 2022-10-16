@@ -88,7 +88,7 @@ export class GamePlayComponent implements OnInit {
   onRoomObtained(room: Room, doNextRound: boolean = false): void {
     this.room = room
     this.gameMode = this.gameModes.find(gameMode => room.mode == gameMode.value)!
-    this.currentRound = this.room.currentGame.lastRound !== undefined ? this.room.currentGame.lastRound.roundNumber : 1
+    this.currentRound = this.room.currentGame.lastRound !== undefined && this.room.currentGame.lastRound !== null ? this.room.currentGame.lastRound.roundNumber : 1
 
     var isFirstPlayer = this.room.firstPlayer.id == this.player.id
     this.leftSidePlayer = [this.room.firstPlayer, this.room.secondPlayer].find(player => player?.id == this.player.id)!
