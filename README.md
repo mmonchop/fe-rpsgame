@@ -13,8 +13,15 @@ development: `/src/environmnents/environment.dev.ts`
 
 | Name | Value | Description |
 | ------ | ------ | ------ |
-| urlApi | http://localhost:8080/api/1.0 | Base path to access to REST API (http) |
-| stompApi | http://localhost:8080/websocket-services | Base path to access to Websockets API |
-| apiUsername | rpsplayer | Username used to access REST API (BasicAuth) |
-| apiPassword | ****** | Password to access to REST API |
+| urlApi | http://localhost:4200/api/1.0 | Base path to access to REST API (http) |
+| stompApi | http://localhost:4200/websocket-services | Base path to access to Websockets API |
+| security.scheme | basic | Basic Authentication security scheme |
+| security.apiUsername | rpsplayer | Username used to access REST API (BasicAuth) |
+| security.apiPassword | password | Password configured in REST API |
 
+## Angular Proxy (development):
+Angular proxy is configured in order to avoid problems with _Cors_ http headers (`/src/proxy.conf.json`):
+| Url mapping | Target | 
+| ------ | ------ |
+| /api/* | http://localhost:8080 | 
+| /websocket-services/* | http://localhost:8080 | 
