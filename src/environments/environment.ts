@@ -5,7 +5,15 @@ export const environment = {
   security: {
     scheme: 'basic',
     apiUsername: '',
-    apiPassword: ''  
+    apiPassword: '',
+    clientId: '',
+    oidc: {
+      authority: '',
+      authWellknownEndpointUrl: null,
+      scopes: '',
+      responseType: 'code',
+      debug: true
+    }
   }
 };
 

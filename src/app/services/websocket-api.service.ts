@@ -3,18 +3,18 @@ import * as SockJS from 'sockjs-client';
 import { Injectable } from '@angular/core';
 import { DialogService } from './dialog/dialog.service';
 import { environment } from 'src/environments/environment';
+import { OidcSecurityService } from 'angular-auth-oidc-client';
 
 @Injectable()
 export class WebSocketApiService {
     id!: string;
     topic!: string;
     stompClient: any;
-    webSocketEndPoint: string;
     onMessageReceivedFunction!: Function;
 
     constructor(
-        private dialogService: DialogService) {
-        this.webSocketEndPoint = `${environment.stompApi}`;
+        private dialogService: DialogService, 
+        private oidcSecurityService: OidcSecurityService) {
     }
     
     connect(topic: string, id: string, onMessageReceivedFunction: Function) {
@@ -24,7 +24,14 @@ export class WebSocketApiService {
         this.onMessageReceivedFunction = onMessageReceivedFunction;
 
         console.log('Initializing WebSocket Connection...');
-        const ws = new SockJS(this.webSocketEndPoint, null);
+        var stompUrl = environment.stompApi
+        if (environment.security.scheme === 'oauth2') {
+            this.oidcSecurityService.checkAuth().subscribe(( loginResponse ) => {
+                stompUrl += '?access_token=' + loginResponse.accessToken
+            })
+        }
+
+        const ws = new SockJS(stompUrl, null);
         this.stompClient = Stomp.over(ws);
 
         this.stompClient.debug = () => { 

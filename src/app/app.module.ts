@@ -23,6 +23,8 @@ import { WebSocketApiService } from './services/websocket-api.service';
 import { PlayService } from './services/play/play.service';
 import { BarRatingModule } from 'ngx-bar-rating';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { AuthConfigModule } from './auth-config.module';
+import { UnauthorizedComponent } from './pages/unauthorized/unauthorized.component';
 
 @NgModule({
   declarations: [
@@ -33,8 +35,10 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     GameRoomComponent,
     GamePlayComponent,
     HeaderComponent,
+    UnauthorizedComponent,
   ],
   imports: [
+    AuthConfigModule,
     AppRoutingModule,
 
     BrowserModule,

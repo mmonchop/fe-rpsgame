@@ -22,7 +22,7 @@ export class RoomService {
   }
 
   getGameModes() {
-    return gameModes
+    return environment.security.scheme === 'oauth2' ? gameModes.filter(gameMode => gameMode.value === 'VS_MACHINE') : gameModes
   }
 
   getRoom(roomId: string): Observable<Room> {

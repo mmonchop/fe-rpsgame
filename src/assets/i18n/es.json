@@ -39,6 +39,9 @@
   "languages": {
     "en": "Inglés",
     "es": "Español"
+  },
+  "unauthorized": {
+    "title": "Usuario NO Unauthorizado!",
+    "home": "Ir a Inicio"
   }
-
 }
