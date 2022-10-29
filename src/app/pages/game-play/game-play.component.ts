@@ -106,7 +106,7 @@ export class GamePlayComponent implements OnInit {
   showOrHidePlayerChoices(): void {
     if (this.currentRoundIsOverOrTie()) {
       var opponentChoice = this.getLastPlayerRoundTurn(this.rightSidePlayer.id).choice
-      this.opponentChoice = { value: opponentChoice, visible: true, height: 175 }
+      this.opponentChoice = { value: opponentChoice, visible: true, height: 150 }
     }
     if (!this.currentRoundIsOver() && this.opponentPlayedTurn()) {
       this.opponentChoice = { value: 'ok', visible: true, height: 100 }

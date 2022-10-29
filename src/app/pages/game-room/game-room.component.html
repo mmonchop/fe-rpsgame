@@ -52,12 +52,12 @@
     <div class="col-3"></div>
   </div>
 
-  <div class="mt-5" style="text-align: center;">
+  <div class="mt-2" style="text-align: center;">
     <button class="mat-button" (click)="copyRoomInviationUrl()" *ngIf="!isSecondPlayer && gameMode.value == 'VS_FRIEND'">{{'game-room.copy-url' | translate}}</button>
     <button class="mat-button" (click)="acceptRoomInvitation()" *ngIf="isSecondPlayer && gameMode.value == 'VS_FRIEND'">{{'game-room.accept-invitation' | translate}}</button>
   </div>
 
-  <div class="mt-5 col-12" style="text-align: center;" *ngIf="showWaitingOponentSpinner()">
+  <div class="mt-2 col-12" style="text-align: center;" *ngIf="showWaitingOponentSpinner()">
     <mat-label class="waiting-text">{{'game-room.waiting-opponent-join' | translate}}</mat-label>
     <mat-spinner class="spinner"></mat-spinner>
   </div>

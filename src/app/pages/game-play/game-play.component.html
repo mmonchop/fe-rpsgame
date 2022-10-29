@@ -47,9 +47,9 @@
   <div class="row mt-5">
     <div class="col-2"></div>
     <div class="col-3" style="text-align: center;">
-      <img class="img-choice" src="assets/images/rock.svg" height="175px" *ngIf="choices[0].visible" (click)="doPlay('ROCK')">
-      <img class="img-choice" src="assets/images/paper.svg" height="175px" *ngIf="choices[1].visible" (click)="doPlay('PAPER')">
-      <img class="img-choice" src="assets/images/scissors.svg" height="175px"  *ngIf="choices[2].visible" (click)="doPlay('SCISSORS')">
+      <img class="img-choice" src="assets/images/rock.svg" height="150px" *ngIf="choices[0].visible" (click)="doPlay('ROCK')">
+      <img class="img-choice" src="assets/images/paper.svg" height="150px" *ngIf="choices[1].visible" (click)="doPlay('PAPER')">
+      <img class="img-choice" src="assets/images/scissors.svg" height="150px"  *ngIf="choices[2].visible" (click)="doPlay('SCISSORS')">
     </div>
     <div class="col-2" style="text-align: center;">
       <mat-label class="round-winner-text" *ngIf="currentRoundIsOverOrTie() && !currentGameIsOver()">{{ roundWinner }}</mat-label>
@@ -61,7 +61,7 @@
     </div>
     <div class="col-2"></div>
   </div>
-  <div class="row mt-5 col-12" *ngIf="currentGameIsOver()">
+  <div class="row mt-3 col-12" *ngIf="currentGameIsOver()">
     <div class="col-4"></div>
     <div class="col-4" style="text-align: center;">
       <button class="mat-button" (click)="doStartNewGame()" >{{'game-play.play-new-game' | translate}}</button>
